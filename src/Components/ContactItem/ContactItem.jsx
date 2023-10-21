@@ -8,7 +8,7 @@ export const ContactIem = ({ contacts, onDeleteContact }) => {
       <FilterButton
         type="button"
         onClick={() => {
-          // onDeleteContact(id);
+          onDeleteContact(id);
         }}
       >
         Delete

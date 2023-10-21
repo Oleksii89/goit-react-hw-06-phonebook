@@ -46,16 +46,11 @@ const App = () => {
     )
       ? alert(`${data.name} is already in contacts`)
       : dispatch({ type: 'contacts/addContacts', payload: data });
-    // (prevState => {
-    //   return [...prevState, data];
-    // });
   };
 
-  // const handleDelete = contactId => {
-  //   setContacts(prevState => {
-  //     return prevState.filter(contact => contact.id !== contactId);
-  //   });
-  // };
+  const handleDelete = contactId => {
+    dispatch({ type: 'contacts/deleteContacts', payload: contactId });
+  };
 
   return (
     <div>
@@ -67,7 +62,7 @@ const App = () => {
       <ContactList>
         <ContactIem
           contacts={getVisibleContact()}
-          // onDeleteContact={handleDelete}
+          onDeleteContact={handleDelete}
         />
       </ContactList>
     </div>
