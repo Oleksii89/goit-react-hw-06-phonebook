@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-export const FilterContainer = styled.div`
+export const StyledFilterContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const FilterButton = styled.button`
+export const StyledFilterButton = styled.button`
   width: 60px;
   background-color: none;
   box-sizing: border-box;

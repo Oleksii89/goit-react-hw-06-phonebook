@@ -1,5 +1,8 @@
-import { Input, Label } from 'Components/ContactForm/ContactForm.styled.';
-import { FilterContainer } from './Filter.styled';
+import {
+  StyledInput,
+  StyledLabel,
+} from 'Components/ContactForm/ContactForm.styled.';
+import { StyledFilterContainer } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
 
@@ -11,9 +14,13 @@ export const Filter = () => {
 
   const dispatch = useDispatch();
   return (
-    <FilterContainer>
-      <Label>Find contact by name</Label>
-      <Input type="text" value={filter} onChange={handleFilter}></Input>
-    </FilterContainer>
+    <StyledFilterContainer>
+      <StyledLabel>Find contact by name</StyledLabel>
+      <StyledInput
+        type="text"
+        value={filter}
+        onChange={handleFilter}
+      ></StyledInput>
+    </StyledFilterContainer>
   );
 };

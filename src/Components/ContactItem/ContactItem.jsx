@@ -1,5 +1,5 @@
-import { FilterButton } from 'Components/Filter/Filter.styled';
-import { ContactItemLi } from './ContactItem.styled';
+import { StyledFilterButton } from 'Components/Filter/Filter.styled';
+import { StyledContactItemLi } from './ContactItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
 
@@ -11,23 +11,22 @@ export const ContactIem = () => {
   const filteredContacts = contacts.filter(contact => {
     return contact.name.toLowerCase().includes(filter.toLowerCase());
   });
-  console.log(filteredContacts);
 
   const onDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };
 
   return filteredContacts.map(({ name, number, id }) => (
-    <ContactItemLi key={id}>
+    <StyledContactItemLi key={id}>
       {name} : {number}
-      <FilterButton
+      <StyledFilterButton
         type="button"
         onClick={() => {
           onDeleteContact(id);
         }}
       >
         Delete
-      </FilterButton>
-    </ContactItemLi>
+      </StyledFilterButton>
+    </StyledContactItemLi>
   ));
 };

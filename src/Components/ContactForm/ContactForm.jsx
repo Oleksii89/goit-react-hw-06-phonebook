@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { Button, Form, Input, Label } from './ContactForm.styled.';
+import {
+  StyledButton,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+} from './ContactForm.styled.';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,10 +43,10 @@ const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label>
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledLabel>
         Name
-        <Input
+        <StyledInput
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -50,10 +55,10 @@ const ContactForm = () => {
           onChange={handleChangeName}
           required
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         Number
-        <Input
+        <StyledInput
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
@@ -62,9 +67,9 @@ const ContactForm = () => {
           onChange={handleChangeNumber}
           required
         />
-      </Label>
-      <Button type="submit">Add contact</Button>
-    </Form>
+      </StyledLabel>
+      <StyledButton type="submit">Add contact</StyledButton>
+    </StyledForm>
   );
 };
 
