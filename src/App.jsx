@@ -3,7 +3,7 @@ import { ContactIem } from 'Components/ContactItem/ContactItem';
 import { ContactList } from 'Components/ContactList/ContactList';
 import { Filter } from 'Components/Filter/Filter';
 // import { useEffect } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //  contacts: [
@@ -17,7 +17,8 @@ const App = () => {
   // const [contacts, setContacts] = useState([]);
   const contacts = useSelector(state => state.contacts.contactsData);
 
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
+  const filter = useSelector(state => state.filter.filterData);
 
   const dispatch = useDispatch();
 
@@ -31,7 +32,7 @@ const App = () => {
   // }, [contacts]);
 
   const handleFilter = evt => {
-    setFilter(evt.currentTarget.value);
+    dispatch({ type: 'filter/setFilter', payload: evt.currentTarget.value });
   };
 
   const getVisibleContact = () => {
