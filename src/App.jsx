@@ -2,8 +2,9 @@ import ContactForm from 'Components/ContactForm/ContactForm';
 import { ContactIem } from 'Components/ContactItem/ContactItem';
 import { ContactList } from 'Components/ContactList/ContactList';
 import { Filter } from 'Components/Filter/Filter';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 //  contacts: [
 //       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -13,17 +14,21 @@ import { useState } from 'react';
 //     ],
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  // const [contacts, setContacts] = useState([]);
+  const contacts = useSelector(state => state.contacts.contactsData);
+
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    const localContacts = localStorage.getItem('contacts');
-    if (localContacts) setContacts(JSON.parse(localContacts) ?? []);
-  }, []);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    contacts && localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   const localContacts = localStorage.getItem('contacts');
+  //   if (localContacts) setContacts(JSON.parse(localContacts) ?? []);
+  // }, []);
+
+  // useEffect(() => {
+  //   contacts && localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   const handleFilter = evt => {
     setFilter(evt.currentTarget.value);
@@ -40,16 +45,17 @@ const App = () => {
       contact => contact.name.toLowerCase() === data.name.toLowerCase()
     )
       ? alert(`${data.name} is already in contacts`)
-      : setContacts(prevState => {
-          return [...prevState, data];
-        });
+      : dispatch({ type: 'contacts/addContacts', payload: data });
+    // (prevState => {
+    //   return [...prevState, data];
+    // });
   };
 
-  const handleDelete = contactId => {
-    setContacts(prevState => {
-      return prevState.filter(contact => contact.id !== contactId);
-    });
-  };
+  // const handleDelete = contactId => {
+  //   setContacts(prevState => {
+  //     return prevState.filter(contact => contact.id !== contactId);
+  //   });
+  // };
 
   return (
     <div>
@@ -61,7 +67,7 @@ const App = () => {
       <ContactList>
         <ContactIem
           contacts={getVisibleContact()}
-          onDeleteContact={handleDelete}
+          // onDeleteContact={handleDelete}
         />
       </ContactList>
     </div>
